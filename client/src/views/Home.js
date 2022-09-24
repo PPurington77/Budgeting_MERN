@@ -36,7 +36,7 @@ export const Home = (props) => {
 								)
 							})}
 
-							<Link to={"/budgets/new"} className="btn btn-sm btn-outline-success">Create a new budget</Link>
+							<Link to={"/budgets/create"} className="btn btn-sm btn-outline-success">Create a new budget</Link>
                         </div>
                     </div>
                 </div>
