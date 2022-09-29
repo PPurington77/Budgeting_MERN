@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { getBudgetById } from "../services/internalApiService";
+import { getBudgetById, updateBudgetById } from "../services/internalApiService";
 
 export const OneBudget = (props) => {
     const [budget, setBudget] = useState(null);
@@ -38,15 +38,14 @@ export const OneBudget = (props) => {
             cost
         };
 
-        const budgetExpenses = expenses;
-
-        budgetExpenses.push(newExpense);
-        navigate(`/budgets/${ id }`);
-    }
+        updateBudgetById(id, { "expenses" : [...expenses, newExpense]});
+        navigate(`/budgets/expense/${ id }`);
+        }
 
     return(
         <div className="w-50 p-4 rounded mx-auto shadow m-5">
             <h1 className="text-center mb-4">{ budget.name } Budget</h1>
+            <Link to={'/home'}>Home</Link>
             <div className="d-flex justify-content-center shadow align-items-center" style={{ backgroundColor: 'lightblue', borderRadius: '10px' }}>
                 <div className="card bg-light mb-3 m-3">
                     <div className="card-body">
