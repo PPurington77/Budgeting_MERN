@@ -21,6 +21,7 @@ export const OneBudget = (props) => {
     if (budget === null ) return null;
 
     const { name, amount, expenses } = budget;
+    let total = 0;
 
     return(
         <div className="w-50 p-4 rounded mx-auto shadow m-5">
@@ -31,19 +32,20 @@ export const OneBudget = (props) => {
                         <h5 className="card-title">Budget: ${ amount }</h5>
                     </div>
                 </div>
-                <div className="card bg-light mb-3 m-3">
-                    <div className="card-body">
-                        <h5 className="card-title">Spent: ${ amount }</h5>
-                    </div>
-                </div>
-                <div className="card bg-light mb-3 m-3">
-                    <div className="card-body">
-                        <h5 className="card-title">Remaining: ${ amount }</h5>
-                    </div>
-                </div>
             </div>
             <div>
                 <h2 className="text-center m-4">Your current expenses:</h2>
+                {expenses.map((expense, id) => {
+                    return (
+                        <div key={ id } className="card bg-light mb-3 m-1 p-4 text-left">
+                            <p>Expense Name: { expense.name }</p>
+                            <p>Expense Category: { expense.category }</p>
+                            <p>Expense Cost: ${ expense.cost }</p>
+                            <p>Total: ${total += expense.cost}</p>
+                            <p>Remaining Budget: ${ amount - total}</p>
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )
